@@ -32,7 +32,7 @@ module control_unit(
    always@(*)begin
             alu_src   = 1'b0;
             mem_2_reg = 1'b0;
-            reg_write = 1'b1;
+            reg_write = 1'b0;
             mem_read  = 1'b0;
             mem_write = 1'b0;
             branch    = 1'b0;
@@ -41,37 +41,44 @@ module control_unit(
 
       case(opcode)
          ALU_R:begin
-            alu_src   = 1'b0;
-            mem_2_reg = 1'b0;
-            reg_write = 1'b1;
-            mem_read  = 1'b0;
-            mem_write = 1'b0;
-            branch    = 1'b0;
-            alu_op    = R_TYPE_OPCODE;
-            jump      = 1'b0;
+         alu_src   = 1'b0;
+         mem_2_reg = 1'b0;
+         reg_write = 1'b1;
+         mem_read  = 1'b0;
+         mem_write = 1'b0;
+         branch    = 1'b0;
+         alu_op    = R_TYPE_OPCODE;
+         jump      = 1'b0;
          end
          
          // Declare the control signals for each one of the instructions here...
 
 	ALU_I: begin
-
+	alu_src = 1'b1; //operand A (immediate_extended)
+	alu_op = ADD_OPCODE;
 	end
 
 	BRANCH_EQ: begin
-		branch = 1'b1;
+	branch = 1'b1;
 
 	end
 	
 	JUMP: begin
-		jump = 1'b1;
+	jump = 1'b1;
 	end
 
 	LOAD: begin
-		
+	mem_read = 1'b1;
+	mem_2_reg = 1'b1;
+	alu_src = 1'b1;
+	alu_op = ADD_OPCODE;
+	reg_write = 1'b1;
 	end
 
 	STORE: begin
-
+	alu_src = 1'b1;
+	alu_op = ADD_OPCODE;
+	mem_write = 1'b1;
 	end
 
 

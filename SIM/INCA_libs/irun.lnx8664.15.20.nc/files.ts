@@ -1,7 +1,7 @@
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/alu.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/alu_control.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/branch_unit.v
-1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
+1646840127 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/cpu.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/immediate_extend_unit.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/mux_2.v

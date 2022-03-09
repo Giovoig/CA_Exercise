@@ -7,8 +7,8 @@
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/mux_2.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/immediate_extend_unit.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/alu_control.v
-1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
+1646840238 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/cpu_tb.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/alu.v
-1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/sram.v
 1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/pc.v
+1646813319 /users/students/r0875167/CA/CA_Exercise/RTL/sram.v

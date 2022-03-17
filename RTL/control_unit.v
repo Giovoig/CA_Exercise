@@ -56,6 +56,8 @@ module control_unit(
 	ALU_I: begin
 	alu_src = 1'b1; //operand A (immediate_extended)
 	alu_op = ADD_OPCODE;
+	mem_2_reg = 1'b0;
+	reg_write = 1'b1;
 	end
 
 	BRANCH_EQ: begin

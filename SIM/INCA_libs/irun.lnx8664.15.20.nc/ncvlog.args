@@ -21,7 +21,6 @@
 ../RTL/cpu_tb.v
 ../RTL/saed32sram_mod.v
 -ALLOWREDEFINITION
--LINEDEBUG
 -CDSLIB
 ./INCA_libs/irun.lnx8664.15.20.nc/cdsrun.lib
 -HDLVAR

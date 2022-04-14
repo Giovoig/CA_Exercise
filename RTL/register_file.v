@@ -37,8 +37,8 @@ module register_file#(
 
 
    always@(*) begin
-         rdata_1 = reg_array[raddr_1];
-         rdata_2 = reg_array[raddr_2];
+         rdata_1 = (reg_write && (waddr == raddr_1)) ? wdata : reg_array[raddr_1];
+         rdata_2 = (reg_write && (waddr == raddr_2)) ? wdata : reg_array[raddr_2];
    end
 
 
@@ -68,6 +68,7 @@ module register_file#(
     
     
 endmodule
+
 
 
 

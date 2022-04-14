@@ -2,6 +2,9 @@
 
 # define design files: */
 set verilog_files { \
+   mux_3
+   forward_unit
+   hazard_detect
    alu
    alu_control
    branch_unit

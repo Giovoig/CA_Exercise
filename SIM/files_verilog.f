@@ -1,4 +1,7 @@
 ../RTL/alu.v
+../RTL/mux_3.v
+../RTL/hazard_detect.v
+../RTL/forward_unit.v
 ../RTL/alu_control.v
 ../RTL/branch_unit.v
 ../RTL/control_unit.v

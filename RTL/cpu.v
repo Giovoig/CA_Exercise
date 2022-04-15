@@ -21,24 +21,24 @@
 
 
 module cpu(
-		input  wire			  clk,
+		input  wire	    clk,
 		input  wire         arst_n,
 		input  wire         enable,
-		input  wire	[63:0]  addr_ext,
+		input  wire [63:0]  addr_ext,
 		input  wire         wen_ext,
 		input  wire         ren_ext,
 		input  wire [31:0]  wdata_ext,
-		input  wire	[63:0]  addr_ext_2,
+		input  wire [63:0]  addr_ext_2,
 		input  wire         wen_ext_2,
 		input  wire         ren_ext_2,
 		input  wire [63:0]  wdata_ext_2,
 		
-		output wire	[31:0]  rdata_ext,
-		output wire	[63:0]  rdata_ext_2
+		output wire [31:0]  rdata_ext,
+		output wire [63:0]  rdata_ext_2
 
    );
 
-wire              zero_flag;
+wire              zero_flag, stall, branch_taken, IF_flush;
 wire [      63:0] branch_pc,updated_pc,current_pc, jump_pc;
 wire [      31:0] instruction;
 wire [       1:0] alu_op;
@@ -67,9 +67,7 @@ wire [31:0] instruction_MEM_WB;
 wire [63:0] mem_data_MEM_WB, alu_out_MEM_WB;
 
 wire signed [63:0] immediate_extended;
-
-
-
+assign run = !stall && enable;
 
 // IF STAGE BEGIN
 
@@ -78,13 +76,13 @@ pc #(
 ) program_counter (
    .clk       (clk       ),
    .arst_n    (arst_n    ),
-   .branch_pc (branch_pc_EX_MEM),
+   .branch_pc (branch_pc),
    .jump_pc   (jump_pc   ),
-   .zero_flag (zero_flag_EX_MEM ),
-   .branch    (branch_EX_MEM    ),
+   .zero_flag (branch_taken ),
+   .branch    (branch ),
    .jump      (jump      ),
    .current_pc(current_pc),
-   .enable    (enable    ),
+   .enable    (run),
    .updated_pc(updated_pc)
 );
 
@@ -111,13 +109,16 @@ sram_BW32 #(
 // IF_ID REG BEGIN
 // IF_ID Pipeline register for instruction signal
 
+wire [31:0] instruction_gated;
+assign instruction_gated = IF_flush ? 32'h00000013 : instruction; //NOP : instruction
+
 reg_arstn_en#(
 	.DATA_W(32)
 ) instruction_pipe_IF_ID(
 	.clk 	(clk				),
 	.arst_n	(arst_n				),
-	.din	(instruction			),
-	.en	(enable				),
+	.din	(instruction_gated		),
+	.en	(run				),
 	.dout	(instruction_IF_ID		)
 );
 
@@ -126,7 +127,7 @@ reg_arstn_en#(.DATA_W(64))
 	.clk	(clk		),
 	.arst_n	(arst_n		),
 	.din	(updated_pc	),
-	.en	(enable		),
+	.en	(run	),
 	.dout	(updated_pc_IF_ID)
 
 );
@@ -140,7 +141,7 @@ register_file #(
 ) register_file(
    .clk      (clk               ),
    .arst_n   (arst_n            ),
-   .reg_write(reg_write         ),
+   .reg_write(reg_write_MEM_WB     ),
    .raddr_1  (instruction_IF_ID[19:15]),
    .raddr_2  (instruction_IF_ID[24:20]),
    .waddr    (instruction_MEM_WB[11:7]),
@@ -154,12 +155,48 @@ control_unit control_unit(
    .alu_op   (alu_op          ),
    .reg_dst  (reg_dst         ),
    .branch   (branch          ),
+   .branch_taken (branch_taken),
    .mem_read (mem_read        ),
    .mem_2_reg(mem_2_reg       ),
    .mem_write(mem_write       ),
    .alu_src  (alu_src         ),
    .reg_write(reg_write       ),
-   .jump     (jump            )
+   .jump     (jump            ),
+   .IF_flush (IF_flush)
+);
+
+assign branch_taken = (regfile_rdata_1 == regfile_rdata_2); //i.e. zero flag would be 1 at EX stage
+
+branch_unit#(
+   .DATA_W(64)
+)branch_unit(
+   	.updated_pc    		(updated_pc_IF_ID),
+   	.immediate_extended 	(immediate_extended),
+   	.branch_pc   		(branch_pc         ),
+  	.jump_pc            	(jump_pc           )
+);
+
+hazard_detect #(
+	.DATA_W(5)
+)
+hazard_detection_unit(
+	.rd_ID_EX(instruction_ID_EX[11:7]),
+	.rs1(instruction_IF_ID[19:15]),
+	.rs2(instruction_IF_ID[24:20]),
+	.mem_read_ID_EX(mem_read_ID_EX),
+	.stall(stall)
+);
+
+wire [9:0] control_signals, control_gated;
+assign control_signals = {alu_op[1], alu_op[0], reg_dst, branch, mem_read, mem_2_reg, mem_write, alu_src, reg_write, jump};
+
+mux_2 #(
+	.DATA_W(10)
+) control_mux(
+	.input_a(control_signals),
+	.input_b(10'b0),
+	.select_a(!stall),
+	.mux_out(control_gated)
 );
 
 immediate_extend_unit immediate_extend_u(
@@ -226,7 +263,7 @@ reg_arstn_en#(.DATA_W(1))
 	RegWrite_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(reg_write),
+	.din	(control_gated[1]),
 	.en	(enable		),
 	.dout	(reg_write_ID_EX)
 
@@ -236,7 +273,7 @@ reg_arstn_en#(.DATA_W(1))
 	branch_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(branch),
+	.din	(control_gated[6]),
 	.en	(enable		),
 	.dout	(branch_ID_EX)
 
@@ -246,7 +283,7 @@ reg_arstn_en#(.DATA_W(1))
 	MemRead_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(mem_read),
+	.din	(control_gated[5]),
 	.en	(enable		),
 	.dout	(mem_read_ID_EX)
 
@@ -256,7 +293,7 @@ reg_arstn_en#(.DATA_W(1))
 	MemWrite_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(mem_write),
+	.din	(control_gated[3]),
 	.en	(enable		),
 	.dout	(mem_write_ID_EX)
 
@@ -266,7 +303,7 @@ reg_arstn_en#(.DATA_W(2))
 	ALUOp_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(alu_op		),
+	.din	(control_gated[9:8]),
 	.en	(enable		),
 	.dout	(alu_op_ID_EX)
 
@@ -276,7 +313,7 @@ reg_arstn_en#(.DATA_W(1))
 	ALUSrc_pipe_ID_EX(
 	.clk	(clk		),
 	.arst_n	(arst_n		),
-	.din	(alu_src),
+	.din	(control_gated[2]),
 	.en	(enable		),
 	.dout	(alu_src_ID_EX)
 
@@ -287,11 +324,20 @@ reg_arstn_en#(
 ) mem_2_reg_pipe_ID_EX(
 	.clk 	(clk				),
 	.arst_n	(arst_n				),
-	.din	(mem_2_reg			),
+	.din	(control_gated[4]		),
 	.en	(enable				),
 	.dout	(mem_2_reg_ID_EX		)
 );
 
+reg_arstn_en#(
+	.DATA_W(1)
+) jump_pipe_ID_EX(
+	.clk 	(clk				),
+	.arst_n	(arst_n				),
+	.din	(control_gated[0]		),
+	.en	(enable				),
+	.dout	(jump_ID_EX			)
+);
 
 
 //...// ID_EX REG END
@@ -361,14 +407,7 @@ alu_control alu_ctrl(
    .alu_control    (alu_control       )
 );
 
-branch_unit#(
-   .DATA_W(64)
-)branch_unit(
-   .updated_pc         (updated_pc_ID_EX),
-   .immediate_extended (immediate_extended_ID_EX),
-   .branch_pc          (branch_pc         ),
-   .jump_pc            (jump_pc           )
-);
+
 //...// EX STAGE END
 
 
@@ -583,5 +622,28 @@ mux_2 #(
 
 
 endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

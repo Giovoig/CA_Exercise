@@ -1,0 +1,87 @@
+*** Message Type: info ***
+When: Thu Apr 14 06:03:23 PM CEST 2022
+SimVision started.
+Version: TOOL:  simvision(64)   15.20-s058
+User: r0875167
+Host: stud-r8-spice-a.esat.kuleuven.be
+Platform: Linux/x86_64/4.18.0-348.20.1.el8_5.x86_64
+Started: Thu Apr 14 06:03:23 PM CEST 2022
+Command: /esat/micas-data/software/Cadence/incisiv_15.20.058/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:stud-r8-spice-a.esat.kuleuven.be:56521 -64BIT -nocopyright
+Work Directory: /users/students/r0875167/CA/CA_Exercise/SIM
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:03:23 PM CEST 2022
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:03:26 PM CEST 2022
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:03:27 PM CEST 2022
+Connect to Simulator
+      Design: worklib.reg_arstn:v
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:        ncsim(64)       15.20-s058
+        User: r0875167
+        Host: stud-r8-spice-a.esat.kuleuven.be
+Time Started: Thu Apr 14 06:03:22 PM CEST 2022
+  Process ID: 8485
+   Directory: /users/students/r0875167/CA/CA_Exercise/SIM
+     Command: ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION -linedebug +gui
+
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:03:29 PM CEST 2022
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:03:36 PM CEST 2022
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: error ***
+When: Thu Apr 14 06:11:14 PM CEST 2022
+bad keyword "XdndSelection": should be pattern
+    while executing
+"runBusy {
+        #
+        # Execute the "do" script
+        #
+        set _buffer ""
+        uplevel $parts(redo)
+        set parts(redo) $_buffer
+
+..."
+    (object "::manager3" method "::undo::Manager::action" body line 65)
+    invoked from within
+"$itk_option(-undocommand) action "Drag&Drop" {
+            do {
+               #
+              # Capture the dragged ids, then delete them
+            #
+              # First time, derive OLDIDS from $_dr..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_drop" body line 65)
+    invoked from within
+"::.waveWindow0.work.user.waveset _drop {XdndSelection selection doesn't exist or form "SV_SIGNAL" not defined} SV_WAVEFORM default {8505 ::.waveWindow..."
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drop {XdndSelection selection doesn't exist or form "SV_SIGNAL" not defined} SV_WAVEFOR..."
+    ("after" script)
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:23:13 PM CEST 2022
+Create waveform window: "Waveform 2"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:24:04 PM CEST 2022
+Delete waveform window: "Waveform 2"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:24:31 PM CEST 2022
+Delete browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Thu Apr 14 06:24:39 PM CEST 2022
+SimVision Exit.
+ 

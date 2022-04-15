@@ -1,5 +1,5 @@
 ncverilog(64): 15.20-s058: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s058: Started on Apr 14, 2022 at 15:57:05 CEST
+TOOL:	ncverilog	15.20-s058: Started on Apr 15, 2022 at 15:45:57 CEST
 ncverilog
 	+sv
 	-f files_verilog.f
@@ -454,18 +454,20 @@ ncelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-
 			streams:   3, words:   969
 		worklib.branch_unit:v <0x7b2dad56>
 			streams:   1, words:   490
-		worklib.control_unit:v <0x1b325f5f>
-			streams:   1, words:  4728
-		worklib.cpu:v <0x6f10194b>
-			streams:  12, words:  1664
-		worklib.cpu_tb:v <0x12e159b9>
-			streams:  27, words: 53186
+		worklib.control_unit:v <0x3892cce2>
+			streams:   1, words:  5266
+		worklib.cpu:v <0x792a3ce0>
+			streams:  18, words:  3241
+		worklib.cpu_tb:v <0x37362abf>
+			streams:  27, words: 53183
 		worklib.forward_unit:v <0x4a48e3eb>
 			streams:   1, words:  1174
-		worklib.hazard_detect:v <0x11dc6acc>
-			streams:   1, words:   300
+		worklib.hazard_detect:v <0x0ae89d33>
+			streams:   1, words:   405
 		worklib.immediate_extend_unit:v <0x013d814d>
 			streams:   2, words:  3075
+		worklib.mux_2:v <0x3ff7a87a>
+			streams:   1, words:   496
 		worklib.mux_2:v <0x69a21794>
 			streams:   1, words:   432
 		worklib.mux_3:v <0x137b9197>
@@ -478,10 +480,10 @@ ncelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-
 			streams:   3, words:   802
 		worklib.reg_arstn_en:v <0x1a7eb253>
 			streams:   3, words:  1033
+		worklib.reg_arstn_en:v <0x669f301b>
+			streams:   3, words:   841
 		worklib.reg_arstn_en:v <0x697a0079>
 			streams:   3, words:   774
-		worklib.reg_arstn_en:v <0x709fd245>
-			streams:   3, words:   787
 		worklib.register_file:v <0x3ae69a65>
 			streams:   5, words: 28543
 		worklib.sram_BW32:v <0x248c010f>
@@ -492,27 +494,27 @@ ncelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                   Instances  Unique
-		Modules:                1806      87
+		Modules:                1808      87
 		Primitives:             5220       1
-		Registers:              7081     237
-		Scalar wires:          12312       -
-		Expanded wires:         1280      40
-		Vectored wires:          158       -
-		Always blocks:          6670     193
+		Registers:              7085     238
+		Scalar wires:          12317       -
+		Expanded wires:         1290      41
+		Vectored wires:          161       -
+		Always blocks:          6673     193
 		Initial blocks:            3       3
-		Cont. assignments:         2       5
-		Pseudo assignments:     5414     158
+		Cont. assignments:         5       9
+		Pseudo assignments:     5417     161
 		Simulation timescale:  100fs
-	Writing initial simulation snapshot: worklib.hazard_detect:v
-Loading snapshot worklib.hazard_detect:v .................... Done
+	Writing initial simulation snapshot: worklib.reg_arstn:v
+Loading snapshot worklib.reg_arstn:v .................... Done
 ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 ncsim> source /esat/micas-data/software/Cadence/incisiv_15.20.058/tools/inca/files/ncsimrc
 ncsim> run
 [1;34m
-Mult3 Working Correctly
+Mult4 Working Correctly
 [0m
-         25 cycles
-Simulation complete via $finish(1) at time 158950 NS + 7
+        890 cycles
+Simulation complete via $finish(1) at time 245550 NS + 0
 ../RTL/cpu_tb.v:319    $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s058: Exiting on Apr 14, 2022 at 15:57:07 CEST  (total: 00:00:02)
+TOOL:	ncverilog	15.20-s058: Exiting on Apr 15, 2022 at 15:45:59 CEST  (total: 00:00:02)

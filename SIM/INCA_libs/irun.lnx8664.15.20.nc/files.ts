@@ -1,8 +1,8 @@
 1649775879 /users/students/r0875167/CA/current/RTL/alu.v
 1649775879 /users/students/r0875167/CA/current/RTL/alu_control.v
 1649768866 /users/students/r0875167/CA/current/RTL/branch_unit.v
-1649775879 /users/students/r0875167/CA/current/RTL/control_unit.v
-1649943959 /users/students/r0875167/CA/current/RTL/cpu.v
+1649950139 /users/students/r0875167/CA/current/RTL/control_unit.v
+1649944911 /users/students/r0875167/CA/current/RTL/cpu.v
 1649768866 /users/students/r0875167/CA/current/RTL/immediate_extend_unit.v
 1649768866 /users/students/r0875167/CA/current/RTL/mux_2.v
 1649768866 /users/students/r0875167/CA/current/RTL/pc.v
@@ -21,8 +21,8 @@
 1649942307 /users/students/r0875167/CA/CA_Exercise/RTL/forward_unit.v
 1649775879 /users/students/r0875167/CA/CA_Exercise/RTL/alu_control.v
 1649768866 /users/students/r0875167/CA/CA_Exercise/RTL/branch_unit.v
-1649775879 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
-1649944602 /users/students/r0875167/CA/CA_Exercise/RTL/cpu.v
+1649952195 /users/students/r0875167/CA/CA_Exercise/RTL/control_unit.v
+1650030343 /users/students/r0875167/CA/CA_Exercise/RTL/cpu.v
 1649768866 /users/students/r0875167/CA/CA_Exercise/RTL/immediate_extend_unit.v
 1649768866 /users/students/r0875167/CA/CA_Exercise/RTL/mux_2.v
 1649768866 /users/students/r0875167/CA/CA_Exercise/RTL/pc.v

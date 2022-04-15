@@ -52,3 +52,5 @@ s47::(15Apr2022:15:29:31):( ncverilog +sv -f files_verilog.f +nc64bit +nctimesca
 s48::(15Apr2022:15:30:01):( ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION -linedebug +gui )
 s49::(15Apr2022:15:30:21):( ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION -linedebug +gui )
 s50::(15Apr2022:15:45:57):( ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION )
+s51::(15Apr2022:16:17:04):( ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION )
+s52::(15Apr2022:16:18:07):( ncverilog +sv -f files_verilog.f +nc64bit +nctimescale+1ns/10ps +access+rwc -ALLOWREDEFINITION )

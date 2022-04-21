@@ -1,5 +1,5 @@
 ncverilog(64): 15.20-s058: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s058: Started on Apr 21, 2022 at 11:18:34 CEST
+TOOL:	ncverilog	15.20-s058: Started on Apr 21, 2022 at 13:11:48 CEST
 ncverilog
 	+sv
 	-f files_verilog.f
@@ -22,8 +22,8 @@ ncverilog
 	+access+rwc
 	-ALLOWREDEFINITION
 Recompiling... reason: file '../RTL/control_unit.v' is newer than expected.
-	expected: Thu Apr 21 11:10:59 2022
-	actual:   Thu Apr 21 11:18:29 2022
+	expected: Thu Apr 21 12:39:03 2022
+	actual:   Thu Apr 21 13:11:43 2022
 file: ../RTL/control_unit.v
 	module worklib.control_unit:v
 		errors: 0, warnings: 0
@@ -220,4 +220,4 @@ Mult1 Working Correctly
 Simulation complete via $finish(1) at time 386450 NS + 7
 ../RTL/cpu_tb.v:319    $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s058: Exiting on Apr 21, 2022 at 11:18:36 CEST  (total: 00:00:02)
+TOOL:	ncverilog	15.20-s058: Exiting on Apr 21, 2022 at 13:11:49 CEST  (total: 00:00:01)

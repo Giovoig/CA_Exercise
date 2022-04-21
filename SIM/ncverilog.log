@@ -1,5 +1,5 @@
 ncverilog(64): 15.20-s058: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s058: Started on Mar 17, 2022 at 17:54:10 CET
+TOOL:	ncverilog	15.20-s058: Started on Apr 21, 2022 at 11:07:05 CEST
 ncverilog
 	+sv
 	-f files_verilog.f
@@ -22,14 +22,8 @@ ncverilog
 	+access+rwc
 	-ALLOWREDEFINITION
 Recompiling... reason: file '../RTL/alu.v' is newer than expected.
-	expected: Thu Mar 17 17:26:56 2022
-	actual:   Thu Mar 17 17:54:03 2022
-file: ../RTL/alu.v
-	module worklib.alu:v
-		errors: 0, warnings: 0
-file: ../RTL/alu_control.v
-	module worklib.alu_control:v
-		errors: 0, warnings: 0
+	expected: Thu Mar 17 17:54:03 2022
+	actual:   Tue Apr 12 17:04:39 2022
 file: ../RTL/saed32sram_mod.v
 `define numAddr 7
                  |
@@ -193,11 +187,6 @@ ncvlog: *W,MACRDF (../RTL/saed32sram_mod.v,4245|20): text macro 'wordLength' red
 	Elaborating the design hierarchy:
 ncelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 	Building instance overlay tables: .................... Done
-	Generating native compiled code:
-		worklib.alu:v <0x73904250>
-			streams:   6, words:  5204
-		worklib.alu_control:v <0x385dad51>
-			streams:   3, words:   969
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
@@ -225,4 +214,4 @@ Mult2 Working Correctly
 Simulation complete via $finish(1) at time 160450 NS + 7
 ../RTL/cpu_tb.v:319    $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s058: Exiting on Mar 17, 2022 at 17:54:11 CET  (total: 00:00:01)
+TOOL:	ncverilog	15.20-s058: Exiting on Apr 21, 2022 at 11:07:08 CEST  (total: 00:00:03)
